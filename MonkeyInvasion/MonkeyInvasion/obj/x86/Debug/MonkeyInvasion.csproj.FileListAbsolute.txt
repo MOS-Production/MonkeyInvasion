@@ -1,0 +1,7 @@
+E:\Development\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\monkey.xnb
+E:\Development\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\MonkeyInvasion.exe
+E:\Development\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\MonkeyInvasion.pdb
+E:\Development\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\obj\x86\Debug\MonkeyInvasion.csprojResolveAssemblyReference.cache
+E:\Development\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+E:\Development\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\obj\x86\Debug\MonkeyInvasion.exe
+E:\Development\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\obj\x86\Debug\MonkeyInvasion.pdb
