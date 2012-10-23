@@ -15,19 +15,21 @@ namespace MonkeyInvasion.Classes
         String Name;
 
 
-        /*Byens posisjon på kartet*/
+        /* Byens posisjon på kartet */
         Vector2 Position;
 
     
-        /* Byens nivå (kanskje enum?) Som en int kan level også brukes til å hente 
-          hvilken posisjon på spritemap som skal hentes for å vise grafikken til byen 
-        */
+        /* 
+         * Byens nivå (kanskje enum?) Som en int kan level også brukes til å hente 
+         * hvilken posisjon på spritemap som skal hentes for å vise grafikken til byen 
+         */
         int Level;
 
 
-        /* Id på spilleren som eier byen. Settes til 0 om byen ikke er eid av en spiller. 
-           Usikker om dette er best løsning 
-        */
+        /* 
+         * Id på spilleren som eier byen. Settes til 0 om byen ikke er eid av en spiller. 
+         * Usikker om dette er best løsning 
+         */
         int Owner { get; set; }
 
     
@@ -35,9 +37,8 @@ namespace MonkeyInvasion.Classes
         Vector2 Size;
 
     
-        /* Liste over alle bygninger i en byen. Mulige bedre løsninger? */  
+        /* Liste over alle bygninger i en byen. Mulige bedre løsninger? */
         List<Building> Buildings;
-
 
 
         public City() 
@@ -45,7 +46,8 @@ namespace MonkeyInvasion.Classes
             //Constructor
         }
 
-        public void AddBuilding(int buildingID)
+
+        public void AddNewBuilding(int buildingID)
         {
             Building building = new Building(0);
             Buildings.Add(building);
