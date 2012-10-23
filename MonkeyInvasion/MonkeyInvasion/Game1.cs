@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
+using MonkeyInvasion.Tiles;
+
 namespace MonkeyInvasion
 {
 
@@ -17,14 +19,27 @@ namespace MonkeyInvasion
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        TileMap myMap = new TileMap();
+        int squaresAcross = 15;
+        int squaresDown = 15;
+
+        Texture2D mControllerDetectScreenBackground;
+
+        bool mIsControllerDetectScreenShown;
+        bool mIsTitleScreenShown;
+
+        PlayerIndex mPlayerOne;
+
+
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
             //Changes the resolutin of the window
-            graphics.PreferredBackBufferHeight = 768;
-            graphics.PreferredBackBufferWidth = 1024;
+            graphics.PreferredBackBufferHeight = 720;
+            graphics.PreferredBackBufferWidth = 1280;
             
             //Set this for fullscreen
             //graphics.IsFullScreen = true;
@@ -36,12 +51,6 @@ namespace MonkeyInvasion
 
 
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
@@ -51,24 +60,22 @@ namespace MonkeyInvasion
 
 
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            Tile.TileSetTexture = Content.Load<Texture2D>(@"Textures/part1_tileset");
+
+            mControllerDetectScreenBackground = Content.Load<Texture2D>("ControllerDetectScreen");
+
+            mIsTitleScreenShown = false;
+            mIsControllerDetectScreenShown = true;
 
             // TODO: use this.Content to load your game content here
         }
 
 
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
-        /// </summary>
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
@@ -76,38 +83,129 @@ namespace MonkeyInvasion
 
 
 
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            //Gets the state of the keyboard
+            //Gets the state of the keyboard and gamepad
             KeyboardState ks = Keyboard.GetState();
+            GamePadState gs = GamePad.GetState(PlayerIndex.One);
 
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || ks.IsKeyDown(Keys.Escape))
+            if (gs.Buttons.Back == ButtonState.Pressed || ks.IsKeyDown(Keys.Escape))
                 this.Exit();
 
-            // TODO: Add your update logic here
+
+            if (mIsControllerDetectScreenShown)
+            {
+                UpdateControllerDetectScreen();
+            }
+            else
+            {
+                UpdateTileMap(ks);
+            }
 
             base.Update(gameTime);
         }
 
 
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+
+            //DisplayTileMap();
+
+            if (mIsControllerDetectScreenShown)
+            {
+                DrawControllerDetectScreen();
+            }
+            else 
+            {
+                DisplayTileMap();
+            }
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
+
+
+
+        private void UpdateControllerDetectScreen()
+        {
+            for (int aPlayer = 0; aPlayer < 4; aPlayer++)
+            {
+                if (GamePad.GetState((PlayerIndex)aPlayer).Buttons.A == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.A) == true)
+                {
+                    mPlayerOne = (PlayerIndex)aPlayer;
+                    mIsControllerDetectScreenShown = false;
+                    return;
+                }
+            }
+        }
+
+
+
+        private void UpdateTileMap(KeyboardState ks)
+        {
+            if (GamePad.GetState(mPlayerOne).Buttons.A == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.B) == true)
+            {
+                mIsControllerDetectScreenShown = true;
+                return;
+            }
+
+            if (ks.IsKeyDown(Keys.Left))
+            {
+                Camera.Location.X = MathHelper.Clamp(Camera.Location.X - 2, 0, (myMap.MapWidth - squaresAcross) * 32);
+            }
+
+            if (ks.IsKeyDown(Keys.Right))
+            {
+                Camera.Location.X = MathHelper.Clamp(Camera.Location.X + 2, 0, (myMap.MapWidth - squaresAcross) * 32);
+            }
+
+            if (ks.IsKeyDown(Keys.Up))
+            {
+                Camera.Location.Y = MathHelper.Clamp(Camera.Location.Y - 2, 0, (myMap.MapHeight - squaresDown) * 32);
+            }
+
+            if (ks.IsKeyDown(Keys.Down))
+            {
+                Camera.Location.Y = MathHelper.Clamp(Camera.Location.Y + 2, 0, (myMap.MapHeight - squaresDown) * 32);
+            }
+
+        }
+
+
+        private void DrawControllerDetectScreen()
+        {
+            spriteBatch.Draw(mControllerDetectScreenBackground, Vector2.Zero, Color.White);
+        }
+
+
+        private void DisplayTileMap()
+        {
+            Vector2 firstSquare = new Vector2(Camera.Location.X / 32, Camera.Location.Y / 32);
+            int firstX = (int)firstSquare.X;
+            int firstY = (int)firstSquare.Y;
+
+            Vector2 squareOffset = new Vector2(Camera.Location.X % 32, Camera.Location.Y % 32);
+            int offsetX = (int)squareOffset.X;
+            int offsetY = (int)squareOffset.Y;
+
+            for (int y = 0; y < squaresDown; y++)
+            {
+                for (int x = 0; x < squaresAcross; x++)
+                {
+                    spriteBatch.Draw(
+                        Tile.TileSetTexture,
+                        new Rectangle((x * 32) - offsetX, (y * 32) - offsetY, 32, 32),
+                        Tile.GetSourceRectangle(myMap.Rows[y + firstY].Columns[x + firstX].TileID),
+                        Color.White);
+                }
+            }
+        }
+
     }
 }

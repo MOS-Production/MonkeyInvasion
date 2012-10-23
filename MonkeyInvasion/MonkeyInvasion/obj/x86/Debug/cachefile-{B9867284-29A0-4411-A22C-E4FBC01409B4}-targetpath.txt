@@ -1,1 +1,4 @@
 Content\monkey.xnb
+Content\Textures\part1_tileset.xnb
+Content\ControllerDetectScreen.xnb
+Content\TitleScreen.xnb

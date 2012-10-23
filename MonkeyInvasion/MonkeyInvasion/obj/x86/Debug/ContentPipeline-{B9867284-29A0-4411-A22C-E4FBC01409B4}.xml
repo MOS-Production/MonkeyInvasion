@@ -10,6 +10,33 @@
       <Output>E:\Development\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\monkey.xnb</Output>
       <Time>2012-10-20T14:17:27.3772957+02:00</Time>
     </Item>
+    <Item>
+      <Source>Textures\part1_tileset.png</Source>
+      <Name>Textures\part1_tileset</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Development\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\Textures\part1_tileset.xnb</Output>
+      <Time>2012-10-21T19:36:02.6554473+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ControllerDetectScreen.png</Source>
+      <Name>ControllerDetectScreen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Development\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\ControllerDetectScreen.xnb</Output>
+      <Time>2012-10-22T23:33:13.8079588+02:00</Time>
+    </Item>
+    <Item>
+      <Source>TitleScreen.png</Source>
+      <Name>TitleScreen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Development\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\TitleScreen.xnb</Output>
+      <Time>2009-03-09T20:59:56+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{B9867284-29A0-4411-A22C-E4FBC01409B4}</ContentProjectGUID>
