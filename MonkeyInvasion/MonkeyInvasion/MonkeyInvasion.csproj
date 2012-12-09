@@ -72,9 +72,23 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BattleEngine.cs" />
     <Compile Include="Classes\Building.cs" />
     <Compile Include="Classes\City.cs" />
     <Compile Include="Classes\Menu.cs" />
+    <Compile Include="DataStructure\BattleScore.cs" />
+    <Compile Include="DataStructure\Buildings\Building.cs" />
+    <Compile Include="DataStructure\Buildings\BuildingType.cs" />
+    <Compile Include="DataStructure\Buildings\TerritoryBuilding.cs" />
+    <Compile Include="DataStructure\DataLoader.cs" />
+    <Compile Include="DataStructure\Player\Player.cs" />
+    <Compile Include="DataStructure\Research\BaseResearch.cs" />
+    <Compile Include="DataStructure\Research\UnitResearch.cs" />
+    <Compile Include="DataStructure\Units\Army.cs" />
+    <Compile Include="DataStructure\Units\Hero.cs" />
+    <Compile Include="DataStructure\Units\Unit.cs" />
+    <Compile Include="DataStructure\Units\UnitType.cs" />
+    <Compile Include="DataStructure\World\Territory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
