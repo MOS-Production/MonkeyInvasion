@@ -11,22 +11,13 @@ using MonkeyInvasion.Graphics;
 using MonkeyInvasion.Utilities;
 using Microsoft.Xna.Framework.Media;
 
+
 namespace MonkeyInvasion.Entities
 {
-    /// <summary>
-    /// A uniform grid of tiles with collections of gems and enemies.
-    /// The level owns the player and controls the game's win and lose
-    /// conditions as well as scoring.
-    /// </summary>
-    class Level : IDisposable
-    {        
-        // Physical structure of the level.
-        //private Tile[,] tiles;
-        private Texture2D[] layers;
-        // The layer which entities are drawn on top of.
-        private const int EntityLayer = 2;
+    class TestGame : BaseGame
+    {
 
-        // Entities in the level.
+        // Entities in the Game.
         public Player Player
         {
             get { return player; }
@@ -36,51 +27,24 @@ namespace MonkeyInvasion.Entities
         private List<Enemy> enemies = new List<Enemy>();
 
         private Random random = new Random(354668); // Arbitrary, but constant seed
-
-        // Level content.        
-        public ContentManager Content
-        {
-            get { return content; }
-        }
-        ContentManager content;
-
-
+      
         #region Loading
 
-        /// <summary>
-        /// Constructs a new level.
-        /// </summary>
-        /// <param name="serviceProvider">
-        /// The service provider that will be used to construct a ContentManager.
-        /// </param>
-        /// <param name="path">
-        /// The absolute path to the level file to be loaded.
-        /// </param>
-        public Level(IServiceProvider serviceProvider, string path)
+        //Constructs a new Game
+        public TestGame(IServiceProvider serviceProvider)
         {
-            // Create a new content manager to load content used just by this level.
-            content = new ContentManager(serviceProvider, "Content");
-           
 
-            //TODO LOAD STUFF!
+            // Create a new content manager to load content used just by this level.
+            this.Content = new ContentManager(serviceProvider, "Content");
+
+            //TODO LOAD STUFF! 
+            player = new Player(this, new Vector2(50, 250));
             
 
-            // Load background layer textures. For now, all levels must
-            // use the same backgrounds and only use the left-most part of them.
-            //layers = new Texture2D[3];
-            //for (int i = 0; i < layers.Length; ++i)
-            //{
-            //    // Choose a random segment if each background layer for level variety.
-            //    int segmentIndex = random.Next(3);
-            //    layers[i] = Content.Load<Texture2D>("Backgrounds/Layer" + i + "_" + segmentIndex);
-            //}
+        }
 
-
-        }    
-
- 
         /// <summary>
-        /// Unloads the level content.
+        /// Unloads the game content.
         /// </summary>
         public void Dispose()
         {
@@ -89,11 +53,6 @@ namespace MonkeyInvasion.Entities
 
         #endregion
 
-        #region Bounds and collision
-
-
-
-        #endregion
 
         #region Update
 
@@ -108,9 +67,9 @@ namespace MonkeyInvasion.Entities
             {
                 // Still want to perform physics on the player.
                 Player.ApplyPhysics(gameTime);
-            }      
+            }
             else
-            {                
+            {
 
                 Player.Update(gameTime);
 
@@ -138,7 +97,7 @@ namespace MonkeyInvasion.Entities
             }
         }
 
- 
+
         /// <summary>
         /// Called when the player is killed.
         /// </summary>
@@ -150,7 +109,7 @@ namespace MonkeyInvasion.Entities
         {
             Player.OnKilled(killedBy);
         }
-   
+
 
         /// <summary>
         /// Restores the player to the starting point to try the level again.
@@ -169,23 +128,18 @@ namespace MonkeyInvasion.Entities
         /// </summary>
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            for (int i = 0; i <= EntityLayer; ++i)
-                spriteBatch.Draw(layers[i], Vector2.Zero, Color.White);
-
-            
-            //foreach (Gem gem in gems)
-            //    gem.Draw(gameTime, spriteBatch);
 
             Player.Draw(gameTime, spriteBatch);
 
             foreach (Enemy enemy in enemies)
                 enemy.Draw(gameTime, spriteBatch);
 
-            for (int i = EntityLayer + 1; i < layers.Length; ++i)
-                spriteBatch.Draw(layers[i], Vector2.Zero, Color.White);
         }
 
 
         #endregion
+
+
+
     }
 }

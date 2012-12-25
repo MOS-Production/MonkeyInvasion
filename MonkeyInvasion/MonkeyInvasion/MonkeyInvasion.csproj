@@ -89,9 +89,12 @@
     <Compile Include="DataStructure\Units\Unit.cs" />
     <Compile Include="DataStructure\Units\UnitType.cs" />
     <Compile Include="DataStructure\World\Territory.cs" />
+    <Compile Include="Entities\BaseGame.cs" />
+    <Compile Include="Entities\ClickEngineGame.cs" />
+    <Compile Include="Entities\MainGame.cs" />
     <Compile Include="Entities\Enemy.cs" />
-    <Compile Include="Entities\Level.cs" />
     <Compile Include="Entities\Player.cs" />
+    <Compile Include="Entities\TestGame.cs" />
     <Compile Include="GameStateManagement\GameScreen.cs" />
     <Compile Include="GameStateManagement\InputState.cs" />
     <Compile Include="GameStateManagement\ScreenManager.cs" />
@@ -102,6 +105,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="MonkeyInvasionGame.cs" />
     <Compile Include="Screens\BackgroundScreen.cs" />
+    <Compile Include="Screens\ClickEngineScreen.cs" />
+    <Compile Include="Screens\PlatformerEngineScreen.cs" />
     <Compile Include="Screens\GameplayScreen.cs" />
     <Compile Include="Screens\LoadingScreen.cs" />
     <Compile Include="Screens\MainMenuScreen.cs" />
@@ -109,6 +114,7 @@
     <Compile Include="Screens\MenuScreen.cs" />
     <Compile Include="Screens\OptionsMenuScreen.cs" />
     <Compile Include="Screens\PauseMenuScreen.cs" />
+    <Compile Include="Screens\TestEnginesMenuScreen.cs" />
     <Compile Include="Tiles\Camera.cs" />
     <Compile Include="Tiles\MapCell.cs" />
     <Compile Include="Tiles\Tile.cs" />

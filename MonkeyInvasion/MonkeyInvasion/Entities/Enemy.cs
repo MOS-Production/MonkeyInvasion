@@ -19,11 +19,11 @@ namespace MonkeyInvasion.Entities
     /// </summary>
     class Enemy
     {
-        public Level Level
+        public BaseGame Game
         {
-            get { return level; }
+            get { return game; }
         }
-        Level level;
+        BaseGame game;
 
         /// <summary>
         /// Position in world space of the bottom center of this enemy.
@@ -77,9 +77,9 @@ namespace MonkeyInvasion.Entities
         /// <summary>
         /// Constructs a new Enemy.
         /// </summary>
-        public Enemy(Level level, Vector2 position, string spriteSet)
+        public Enemy(BaseGame game, Vector2 position, string spriteSet)
         {
-            this.level = level;
+            this.game = game;
             this.position = position;
 
             LoadContent(spriteSet);
@@ -92,8 +92,8 @@ namespace MonkeyInvasion.Entities
         {
             // Load animations.
             spriteSet = "Sprites/" + spriteSet + "/";
-            runAnimation = new Animation(Level.Content.Load<Texture2D>(spriteSet + "Run"), 0.1f, true);
-            idleAnimation = new Animation(Level.Content.Load<Texture2D>(spriteSet + "Idle"), 0.15f, true);
+            runAnimation = new Animation(Game.Content.Load<Texture2D>(spriteSet + "Run"), 0.1f, true);
+            idleAnimation = new Animation(Game.Content.Load<Texture2D>(spriteSet + "Idle"), 0.15f, true);
             sprite.PlayAnimation(idleAnimation);
 
             // Calculate bounds within texture size.
@@ -142,8 +142,7 @@ namespace MonkeyInvasion.Entities
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             // Stop running when the game is paused or before turning around.
-            if (!Level.Player.IsAlive ||
-                waitTime > 0)
+            if (waitTime > 0)
             {
                 sprite.PlayAnimation(idleAnimation);
             }

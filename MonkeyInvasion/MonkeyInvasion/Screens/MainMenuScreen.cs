@@ -20,19 +20,19 @@ namespace MonkeyInvasion.Screens
         {
             // Create our menu entries.
             MenuEntry playGameMenuEntry = new MenuEntry("Play Game");
-            MenuEntry testBattleEngineMenuEntry = new MenuEntry("Test Battle Engine");
+            MenuEntry testEnginesMenuEntry = new MenuEntry("Test Engines");
             MenuEntry optionsMenuEntry = new MenuEntry("Options");
             MenuEntry exitMenuEntry = new MenuEntry("Exit");
 
             // Hook up menu event handlers.
             playGameMenuEntry.Selected += PlayGameMenuEntrySelected;
-            testBattleEngineMenuEntry.Selected += BattleEngineMenuEntrySelected;
+            testEnginesMenuEntry.Selected += TestEnginesMenuEntrySelected;
             optionsMenuEntry.Selected += OptionsMenuEntrySelected;
             exitMenuEntry.Selected += OnCancel;
 
             // Add entries to the menu.
             MenuEntries.Add(playGameMenuEntry);
-            MenuEntries.Add(testBattleEngineMenuEntry);
+            MenuEntries.Add(testEnginesMenuEntry);
             MenuEntries.Add(optionsMenuEntry);
             MenuEntries.Add(exitMenuEntry);
         }
@@ -54,9 +54,10 @@ namespace MonkeyInvasion.Screens
         /// <summary>
         /// Event handler for when the Battle Engine menu entry is selected.
         /// </summary>
-        void BattleEngineMenuEntrySelected(object sender, EventArgs e)
+        void TestEnginesMenuEntrySelected(object sender, EventArgs e)
         {
-            //LoadingScreen.Load(ScreenManager, true, null, new GameplayScreen());
+            ScreenManager.AddScreen(new BackgroundScreen(), null);
+            ScreenManager.AddScreen(new TestEnginesMenuScreen(), null);
         }
 
 

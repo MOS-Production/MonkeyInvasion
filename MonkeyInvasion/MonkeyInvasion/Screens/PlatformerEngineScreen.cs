@@ -16,19 +16,21 @@ namespace MonkeyInvasion.Screens
     /// <summary>
     /// This screen implements the actual game logic...
     /// </summary>
-    class GameplayScreen : GameScreen
+    class PlatformerEngineScreen : GameScreen
     {
         #region Fields
 
         ContentManager content;
         SpriteFont gameFont;
-    
+
+        Vector2 playerPosition = new Vector2(100, 100);        
+
         // Global content.        
         //private Texture2D winOverlay;        
 
         // Meta-level game state.
 
-        private MainGame game;
+        private TestGame game;
 
         private bool wasContinuePressed;
 
@@ -45,7 +47,7 @@ namespace MonkeyInvasion.Screens
         /// <summary>
         /// Constructor.
         /// </summary>
-        public GameplayScreen()
+        public PlatformerEngineScreen()
         {
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
@@ -90,14 +92,15 @@ namespace MonkeyInvasion.Screens
         private void LoadNewGame()
         {
             //TODO LOAD THE GAME CONTENT HERE....
-            game = new MainGame(ScreenManager.Game.Services);
+            game = new TestGame(ScreenManager.Game.Services);
 
         }
 
 
 
         private void ReloadCurrentLevel()
-        {       
+        {
+            //--levelIndex;           
             LoadNewGame();
         }
 
@@ -148,8 +151,12 @@ namespace MonkeyInvasion.Screens
             // to get the player back to playing.
             if (!wasContinuePressed && continuePressed)
             {
-                //TODO...             
+                if (!game.Player.IsAlive)
+                {
+                    game.StartNewLife();
+                }                
 
+                //ReloadCurrentLevel();
             }
 
             wasContinuePressed = continuePressed;
@@ -183,7 +190,7 @@ namespace MonkeyInvasion.Screens
             }
             else
             {
-                // TODO: DO MOVEMENTS ETC ETC
+                // Otherwise move the player position, etc etc...
 
                 Vector2 movement = Vector2.Zero;
 
@@ -207,7 +214,7 @@ namespace MonkeyInvasion.Screens
                 if (movement.Length() > 1)
                     movement.Normalize();
 
-                //playerPosition += movement * 2;
+                playerPosition += movement * 2;
             }
         }
 

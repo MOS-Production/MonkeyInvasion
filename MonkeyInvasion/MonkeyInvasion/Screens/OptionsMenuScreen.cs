@@ -7,7 +7,7 @@ namespace MonkeyInvasion.Screens
     class OptionsMenuScreen : MenuScreen
     {
 
-                #region Initialization
+        #region Initialization
 
 
         /// <summary>

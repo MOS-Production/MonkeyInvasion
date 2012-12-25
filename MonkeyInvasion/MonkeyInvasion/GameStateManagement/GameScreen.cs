@@ -71,7 +71,6 @@ namespace MonkeyInvasion.GameStateManagement
 
         TimeSpan transitionOffTime = TimeSpan.Zero;
 
-
         /// <summary>
         /// Gets the current position of the screen transition, ranging
         /// from zero (fully active, no transition) to one (transitioned

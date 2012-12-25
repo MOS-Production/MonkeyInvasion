@@ -10,26 +10,24 @@ using MonkeyInvasion.Utilities;
 namespace MonkeyInvasion.Entities
 {
     /// <summary>
-    /// Our fearless adventurer!
+    /// Our fearless monkey!
     /// </summary>
     class Player
     {
         // Animations
         private Animation idleAnimation;
-        private Animation runAnimation;
-        private Animation jumpAnimation;
+        private Animation runAnimation;       
         private Animation celebrateAnimation;
         private Animation dieAnimation;
         private SpriteEffects flip = SpriteEffects.None;
         private AnimationPlayer sprite;
 
-        // Sounds
 
-        public Level Level
+        public BaseGame Game
         {
-            get { return level; }
+            get { return game; }
         }
-        Level level;
+        BaseGame game;
 
         public bool IsAlive
         {
@@ -59,37 +57,14 @@ namespace MonkeyInvasion.Entities
         private const float MoveAcceleration = 14000.0f;
         private const float MaxMoveSpeed = 2000.0f;
         private const float GroundDragFactor = 0.58f;
-        private const float AirDragFactor = 0.65f;
-
-        // Constants for controlling vertical movement
-        private const float MaxJumpTime = 0.35f;
-        private const float JumpLaunchVelocity = -4000.0f;
-        private const float GravityAcceleration = 3500.0f;
-        private const float MaxFallSpeed = 600.0f;
-        private const float JumpControlPower = 0.14f;
 
         // Input configuration
         private const float MoveStickScale = 1.0f;
-        private const Buttons JumpButton = Buttons.A;
-
-        /// <summary>
-        /// Gets whether or not the player's feet are on the ground.
-        /// </summary>
-        public bool IsOnGround
-        {
-            get { return isOnGround; }
-        }
-        bool isOnGround;
 
         /// <summary>
         /// Current user movement input.
         /// </summary>
         private float movement;
-
-        // Jumping state
-        private bool isJumping;
-        private bool wasJumping;
-        private float jumpTime;
 
         private Rectangle localBounds;
         /// <summary>
@@ -109,9 +84,9 @@ namespace MonkeyInvasion.Entities
         /// <summary>
         /// Constructors a new player.
         /// </summary>
-        public Player(Level level, Vector2 position)
+        public Player(BaseGame game, Vector2 position)
         {
-            this.level = level;
+            this.game = game;
 
             LoadContent();
 
@@ -124,11 +99,10 @@ namespace MonkeyInvasion.Entities
         public void LoadContent()
         {
             // Load animated textures.
-            idleAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Idle"), 0.1f, true);
-            runAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Run"), 0.1f, true);
-            jumpAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Jump"), 0.1f, false);
-            celebrateAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Celebrate"), 0.1f, false);
-            dieAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Die"), 0.1f, false);
+            idleAnimation = new Animation(Game.Content.Load<Texture2D>("Sprites/Player/Idle"), 0.1f, true);
+            runAnimation = new Animation(Game.Content.Load<Texture2D>("Sprites/Player/Run"), 0.1f, true);            
+            celebrateAnimation = new Animation(Game.Content.Load<Texture2D>("Sprites/Player/Celebrate"), 0.1f, false);
+            dieAnimation = new Animation(Game.Content.Load<Texture2D>("Sprites/Player/Die"), 0.1f, false);
 
             // Calculate bounds within texture size.            
             int width = (int)(idleAnimation.FrameWidth * 0.4);
@@ -148,7 +122,7 @@ namespace MonkeyInvasion.Entities
         {
             Position = position;
             Velocity = Vector2.Zero;
-            isAlive = true;
+            isAlive = true;            
             sprite.PlayAnimation(idleAnimation);
         }
 
@@ -161,7 +135,7 @@ namespace MonkeyInvasion.Entities
 
             ApplyPhysics(gameTime);
 
-            if (IsAlive && IsOnGround)
+            if (IsAlive)
             {
                 if (Math.Abs(Velocity.X) - 0.02f > 0)
                 {
@@ -175,8 +149,7 @@ namespace MonkeyInvasion.Entities
             }
 
             // Clear input.
-            movement = 0.0f;
-            isJumping = false;
+            movement = 0.0f;            
         }
 
         /// <summary>
@@ -209,12 +182,6 @@ namespace MonkeyInvasion.Entities
                 movement = 1.0f;
             }
 
-            // Check if the player wants to jump.
-            isJumping =
-                gamePadState.IsButtonDown(JumpButton) ||
-                keyboardState.IsKeyDown(Keys.Space) ||
-                keyboardState.IsKeyDown(Keys.Up) ||
-                keyboardState.IsKeyDown(Keys.W);
         }
 
         /// <summary>
@@ -228,23 +195,20 @@ namespace MonkeyInvasion.Entities
 
             // Base velocity is a combination of horizontal movement control and
             // acceleration downward due to gravity.
-            velocity.X += movement * MoveAcceleration * elapsed;
-            velocity.Y = MathHelper.Clamp(velocity.Y + GravityAcceleration * elapsed, -MaxFallSpeed, MaxFallSpeed);
+            velocity.X += movement * MoveAcceleration * elapsed;            
+            velocity.Y = MathHelper.Clamp(velocity.Y, -MaxMoveSpeed, MaxMoveSpeed);
 
-            velocity.Y = DoJump(velocity.Y, gameTime);
+            //velocity.Y = DoJump(velocity.Y, gameTime);
 
             // Apply pseudo-drag horizontally.
-            if (IsOnGround)
-                velocity.X *= GroundDragFactor;
-            else
-                velocity.X *= AirDragFactor;
-
+            velocity.X *= GroundDragFactor;
+            
             // Prevent the player from running faster than his top speed.            
             velocity.X = MathHelper.Clamp(velocity.X, -MaxMoveSpeed, MaxMoveSpeed);
 
             // Apply velocity.
             Position += velocity * elapsed;
-            Position = new Vector2((float)Math.Round(Position.X), (float)Math.Round(Position.Y));
+            Position = new Vector2((float)Math.Round(Position.X), (float)Math.Round(Position.Y));            
 
             // If the player is now colliding with the level, separate them.
             HandleCollisions();
@@ -255,59 +219,7 @@ namespace MonkeyInvasion.Entities
 
             if (Position.Y == previousPosition.Y)
                 velocity.Y = 0;
-        }
-
-        /// <summary>
-        /// Calculates the Y velocity accounting for jumping and
-        /// animates accordingly.
-        /// </summary>
-        /// <remarks>
-        /// During the accent of a jump, the Y velocity is completely
-        /// overridden by a power curve. During the decent, gravity takes
-        /// over. The jump velocity is controlled by the jumpTime field
-        /// which measures time into the accent of the current jump.
-        /// </remarks>
-        /// <param name="velocityY">
-        /// The player's current velocity along the Y axis.
-        /// </param>
-        /// <returns>
-        /// A new Y velocity if beginning or continuing a jump.
-        /// Otherwise, the existing Y velocity.
-        /// </returns>
-        private float DoJump(float velocityY, GameTime gameTime)
-        {
-            // If the player wants to jump
-            if (isJumping)
-            {
-                // Begin or continue a jump
-                if ((!wasJumping && IsOnGround) || jumpTime > 0.0f)
-                {
-                 
-                    jumpTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    sprite.PlayAnimation(jumpAnimation);
-                }
-
-                // If we are in the ascent of the jump
-                if (0.0f < jumpTime && jumpTime <= MaxJumpTime)
-                {
-                    // Fully override the vertical velocity with a power curve that gives players more control over the top of the jump
-                    velocityY = JumpLaunchVelocity * (1.0f - (float)Math.Pow(jumpTime / MaxJumpTime, JumpControlPower));
-                }
-                else
-                {
-                    // Reached the apex of the jump
-                    jumpTime = 0.0f;
-                }
-            }
-            else
-            {
-                // Continues not jumping or cancels a jump in progress
-                jumpTime = 0.0f;
-            }
-            wasJumping = isJumping;
-
-            return velocityY;
-        }
+        }  
 
         /// <summary>
         /// Detects and resolves all collisions between the player and his neighboring
@@ -323,9 +235,6 @@ namespace MonkeyInvasion.Entities
             //int rightTile = (int)Math.Ceiling(((float)bounds.Right / Tile.Width)) - 1;
             //int topTile = (int)Math.Floor((float)bounds.Top / Tile.Height);
             //int bottomTile = (int)Math.Ceiling(((float)bounds.Bottom / Tile.Height)) - 1;
-
-            // Reset flag to search for ground collision.
-            isOnGround = false;
 
             //TODO: HANDLE COLLISIONS....
             // For each potentially colliding tile,
@@ -346,14 +255,6 @@ namespace MonkeyInvasion.Entities
             isAlive = false;
             
             sprite.PlayAnimation(dieAnimation);
-        }
-
-        /// <summary>
-        /// Called when this player reaches the level's exit.
-        /// </summary>
-        public void OnReachedExit()
-        {
-            sprite.PlayAnimation(celebrateAnimation);
         }
 
         /// <summary>
