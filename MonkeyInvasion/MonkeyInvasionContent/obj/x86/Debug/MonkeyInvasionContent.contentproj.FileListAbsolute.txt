@@ -1,1 +1,2 @@
 E:\Development\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\MonkeyInvasionContent\obj\x86\Debug\MonkeyInvasionContent.contentprojResolveAssemblyReference.cache
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasionContent\obj\x86\Debug\MonkeyInvasionContent.contentprojResolveAssemblyReference.cache

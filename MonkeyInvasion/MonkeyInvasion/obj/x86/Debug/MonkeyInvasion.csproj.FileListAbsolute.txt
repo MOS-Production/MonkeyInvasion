@@ -8,3 +8,29 @@ E:\Development\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\obj\x
 E:\Development\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\Textures\part1_tileset.xnb
 E:\Development\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\ControllerDetectScreen.xnb
 E:\Development\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\TitleScreen.xnb
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\monkey.xnb
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\Textures\part1_tileset.xnb
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\ControllerDetectScreen.xnb
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\TitleScreen.xnb
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\MonkeyInvasion.exe
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\MonkeyInvasion.pdb
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\obj\x86\Debug\MonkeyInvasion.csprojResolveAssemblyReference.cache
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\obj\x86\Debug\MonkeyInvasion.exe
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\obj\x86\Debug\MonkeyInvasion.pdb
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\blank.xnb
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\Backgrounds\MainMenuBackground.xnb
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\Fonts\gamefont.xnb
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\Fonts\menufont.xnb
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\Sounds\MonsterKilled.xnb
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\Sounds\Music.xnb
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\Sounds\MonsterKilled.wma
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\Sounds\Music.wma
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\Sprites\Player\Celebrate.xnb
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\Sprites\Player\Die.xnb
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\Sprites\Player\Idle.xnb
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\Sprites\Player\Jump.xnb
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\Sprites\Player\Run.xnb
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\Sprites\MonsterA\Die.xnb
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\Sprites\MonsterA\Idle.xnb
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\Sprites\MonsterA\Run.xnb
