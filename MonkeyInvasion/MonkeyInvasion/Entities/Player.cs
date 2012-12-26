@@ -98,7 +98,7 @@ namespace MonkeyInvasion.Entities
         /// </summary>
         public void LoadContent()
         {
-            // Load animated textures.
+            // Load animated textures.            
             idleAnimation = new Animation(Game.Content.Load<Texture2D>("Sprites/Player/Idle"), 0.1f, true);
             runAnimation = new Animation(Game.Content.Load<Texture2D>("Sprites/Player/Run"), 0.1f, true);            
             celebrateAnimation = new Animation(Game.Content.Load<Texture2D>("Sprites/Player/Celebrate"), 0.1f, false);

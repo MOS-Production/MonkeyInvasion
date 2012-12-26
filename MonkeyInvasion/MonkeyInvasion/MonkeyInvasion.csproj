@@ -90,6 +90,7 @@
     <Compile Include="DataStructure\Units\UnitType.cs" />
     <Compile Include="DataStructure\World\Territory.cs" />
     <Compile Include="Entities\BaseGame.cs" />
+    <Compile Include="Entities\ClickableObject.cs" />
     <Compile Include="Entities\ClickEngineGame.cs" />
     <Compile Include="Entities\MainGame.cs" />
     <Compile Include="Entities\Enemy.cs" />

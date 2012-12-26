@@ -23,14 +23,11 @@ namespace MonkeyInvasion.Entities
         }
         Player player;
 
-        private Random random = new Random(354668); // Arbitrary, but constant seed
 
-        // Game Content.        
-        public ContentManager Content
-        {
-            get { return content; }
-        }
-        ContentManager content;
+        private List<ClickableObject> clickableEntities = new List<ClickableObject>();
+
+        private Random random = new Random(354668); // Arbitrary, but constant seed
+  
 
         #region Loading
 
@@ -39,22 +36,17 @@ namespace MonkeyInvasion.Entities
         {
 
             // Create a new content manager to load content used just by this level.
-            content = new ContentManager(serviceProvider, "Content");
+            this.Content = new ContentManager(serviceProvider, "Content");
 
 
             //TODO LOAD STUFF! 
-            player = new Player(this, new Vector2(250, 250));            
+            player = new Player(this, new Vector2(250, 250));
 
+            ClickableObject obj = new ClickableObject(this, new Vector2(150, 150), "Sprites/MonsterA/");
+            clickableEntities.Add(obj);
             
         }
 
-        /// <summary>
-        /// Unloads the game content.
-        /// </summary>
-        public void Dispose()
-        {
-            Content.Unload();
-        }
 
         #endregion
 
@@ -69,7 +61,12 @@ namespace MonkeyInvasion.Entities
         {
 
             //TODO UPDATE!
-                Player.Update(gameTime);            
+                Player.Update(gameTime);
+
+                foreach (ClickableObject obj in clickableEntities)
+                {
+                    obj.Update(gameTime);
+                }
 
 
         }
@@ -88,6 +85,11 @@ namespace MonkeyInvasion.Entities
 
             Player.Draw(gameTime, spriteBatch);
 
+
+            foreach (ClickableObject obj in clickableEntities)
+            {
+                obj.Draw(gameTime, spriteBatch);
+            }
             
 
         }

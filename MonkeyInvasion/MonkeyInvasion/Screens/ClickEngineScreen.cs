@@ -30,7 +30,7 @@ namespace MonkeyInvasion.Screens
 
         // Meta-level game state.
 
-        private TestGame game;
+        private ClickEngineGame game;
 
         private bool wasContinuePressed;
 
@@ -92,15 +92,14 @@ namespace MonkeyInvasion.Screens
         private void LoadNewGame()
         {
             //TODO LOAD THE GAME CONTENT HERE....
-            game = new TestGame(ScreenManager.Game.Services);
+            game = new ClickEngineGame(ScreenManager.Game.Services);
 
         }
 
 
 
         private void ReloadCurrentLevel()
-        {
-            //--levelIndex;           
+        {      
             LoadNewGame();
         }
 
@@ -153,7 +152,7 @@ namespace MonkeyInvasion.Screens
             {
                 if (!game.Player.IsAlive)
                 {
-                    game.StartNewLife();
+                    LoadNewGame();
                 }                
 
                 //ReloadCurrentLevel();
