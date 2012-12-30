@@ -9,6 +9,7 @@ using System.IO;
 using System.IO.IsolatedStorage;
 using MonkeyInvasion.GameStateManagement;
 using MonkeyInvasion.Entities;
+using MonkeyInvasion.Screens.Popups;
 
 
 namespace MonkeyInvasion.Screens
@@ -127,7 +128,7 @@ namespace MonkeyInvasion.Screens
                                                        bool coveredByOtherScreen)
         {
 
-            HandleInput();
+            //HandleInput();
 
             // TODO: Add your update logic here            
             game.Update(gameTime);                       
@@ -135,31 +136,31 @@ namespace MonkeyInvasion.Screens
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
 
-        private void HandleInput()
-        {
-            KeyboardState keyboardState = Keyboard.GetState();
-            GamePadState gamepadState = GamePad.GetState(PlayerIndex.One);
+        //private void HandleInput()
+        //{
+        //    KeyboardState keyboardState = Keyboard.GetState();
+        //    GamePadState gamepadState = GamePad.GetState(PlayerIndex.One);
 
-            bool buttonTouched = false;
+        //    bool buttonTouched = false;
 
-            bool continuePressed =
-                    keyboardState.IsKeyDown(Keys.Space) ||
-                    gamepadState.IsButtonDown(ContinueButton) || buttonTouched;
+        //    bool continuePressed =
+        //            keyboardState.IsKeyDown(Keys.Space) ||
+        //            gamepadState.IsButtonDown(ContinueButton) || buttonTouched;
 
-            // Perform the appropriate action to advance the game and
-            // to get the player back to playing.
-            if (!wasContinuePressed && continuePressed)
-            {
-                if (!game.Player.IsAlive)
-                {
-                    LoadNewGame();
-                }                
+        //    // Perform the appropriate action to advance the game and
+        //    // to get the player back to playing.
+        //    if (!wasContinuePressed && continuePressed)
+        //    {
+        //        if (!game.Player.IsAlive)
+        //        {
+        //            LoadNewGame();
+        //        }                
 
-                //ReloadCurrentLevel();
-            }
+        //        //ReloadCurrentLevel();
+        //    }
 
-            wasContinuePressed = continuePressed;
-        }
+        //    wasContinuePressed = continuePressed;
+        //}
 
         /// <summary>
         /// Lets the game respond to player input. Unlike the Update method,
@@ -186,6 +187,10 @@ namespace MonkeyInvasion.Screens
             if (input.IsPauseGame(ControllingPlayer) || gamePadDisconnected)
             {
                 ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
+            }
+            else if (keyboardState.IsKeyDown(Keys.P)){
+
+                ScreenManager.AddScreen(new BuildPopupScreen(game), ControllingPlayer);
             }
             else
             {

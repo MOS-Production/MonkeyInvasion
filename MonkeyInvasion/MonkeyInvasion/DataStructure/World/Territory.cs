@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MonkeyInvasion_TestClasses.DataStructure.World
+namespace MonkeyInvasion.DataStructure.World
 {
     class Territory
     {

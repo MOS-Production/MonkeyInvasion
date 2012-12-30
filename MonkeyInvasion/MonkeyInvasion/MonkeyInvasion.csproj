@@ -73,15 +73,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BattleEngine.cs" />
-    <Compile Include="Classes\Building.cs" />
-    <Compile Include="Classes\City.cs" />
-    <Compile Include="Classes\Menu.cs" />
+    <Compile Include="Controls\Button.cs" />
+    <Compile Include="Controls\Control.cs" />
+    <Compile Include="Controls\ControlManager.cs" />
+    <Compile Include="Controls\Label.cs" />
+    <Compile Include="Controls\PictureBox.cs" />
+    <Compile Include="DataStructure\Buildings\City.cs" />
     <Compile Include="DataStructure\BattleScore.cs" />
     <Compile Include="DataStructure\Buildings\Building.cs" />
     <Compile Include="DataStructure\Buildings\BuildingType.cs" />
     <Compile Include="DataStructure\Buildings\TerritoryBuilding.cs" />
     <Compile Include="DataStructure\DataLoader.cs" />
-    <Compile Include="DataStructure\Player\Player.cs" />
+    <Compile Include="DataStructure\Player\HumanPlayer.cs" />
     <Compile Include="DataStructure\Research\BaseResearch.cs" />
     <Compile Include="DataStructure\Research\UnitResearch.cs" />
     <Compile Include="DataStructure\Units\Army.cs" />
@@ -115,12 +118,15 @@
     <Compile Include="Screens\MenuScreen.cs" />
     <Compile Include="Screens\OptionsMenuScreen.cs" />
     <Compile Include="Screens\PauseMenuScreen.cs" />
+    <Compile Include="Screens\PopupScreen.cs" />
+    <Compile Include="Screens\Popups\BuildPopupScreen.cs" />
     <Compile Include="Screens\TestEnginesMenuScreen.cs" />
     <Compile Include="Tiles\Camera.cs" />
     <Compile Include="Tiles\MapCell.cs" />
     <Compile Include="Tiles\Tile.cs" />
     <Compile Include="Tiles\TileMap.cs" />
     <Compile Include="Utilities\Circle.cs" />
+    <Compile Include="Utilities\DrawingUtils.cs" />
     <Compile Include="Utilities\RectangleUtils.cs" />
   </ItemGroup>
   <ItemGroup>

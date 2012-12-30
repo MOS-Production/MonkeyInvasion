@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MonkeyInvasion_TestClasses.DataStructure.Research
+namespace MonkeyInvasion.DataStructure.Research
 {
     class BaseResearch
     {

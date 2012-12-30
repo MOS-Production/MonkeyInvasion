@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MonkeyInvasion_TestClasses.DataStructure;
-using MonkeyInvasion_TestClasses.DataStructure.Units;
+using MonkeyInvasion.DataStructure;
+using MonkeyInvasion.DataStructure.Units;
 
-namespace MonkeyInvasion_TestClasses
+namespace MonkeyInvasion
 {
     class BattleEngine
     {

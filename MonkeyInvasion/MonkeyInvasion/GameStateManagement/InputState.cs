@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MonkeyInvasion.GameStateManagement
 {
+
+    //TODO: add support for mouse state as well!
+
     /// <summary>
     /// Helper for reading input from keyboard and gamepad. This class tracks both
     /// the current and previous state of both input devices, and implements query
