@@ -74,7 +74,7 @@ namespace MonkeyInvasion.Controls
         }
 
 
-        public virtual void Update(float elapsedTime)
+        public virtual void Update(GameTime gameTime)
         {
 
         }

@@ -20,13 +20,13 @@ namespace MonkeyInvasion.Controls
         }
 
 
-        public void Update(float elapsedTime)
+        public void Update(GameTime gameTime)
         {
 
             foreach (var control in controls)
             {
 
-                control.Value.Update(elapsedTime);
+                control.Value.Update(gameTime);
 
             }
 
@@ -49,7 +49,7 @@ namespace MonkeyInvasion.Controls
 
             foreach (var control in controls)
             {
-
+                Console.WriteLine("control draw! " + control.Key);
                 control.Value.Draw(spriteBatch);
 
             }

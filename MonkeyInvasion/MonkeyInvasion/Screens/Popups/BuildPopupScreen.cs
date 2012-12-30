@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using MonkeyInvasion.GameStateManagement;
 using MonkeyInvasion.Entities;
+using MonkeyInvasion.Controls;
 
 
 namespace MonkeyInvasion.Screens.Popups
@@ -20,23 +21,33 @@ namespace MonkeyInvasion.Screens.Popups
 
         List<ClickableObject> objects = new List<ClickableObject>();
 
+        ControlManager controls = new ControlManager();
+
         public BuildPopupScreen(BaseGame game)
             : base("Build Screen Test")
         {
 
             this.game = game;
+            
+            ContentManager content = game.Content;
 
             // Flag that there is no need for the game to transition
             // off when the build popup is on top of it.
             IsPopup = true;
 
 
-            //TODO add content...
+            //VARIOUS TEST CONTENT / CONTROLS
             ClickableObject buttonOne = new ClickableObject(game, new Vector2(100, 100), "Sprites/Player/");
             ClickableObject buttonTwo = new ClickableObject(game, new Vector2(250, 100), "Sprites/MonsterA/");
 
             objects.Add(buttonOne);
             objects.Add(buttonTwo);
+
+
+            PictureBox pictureBox = new PictureBox(new Vector2(250, 250), content.Load<Texture2D>("Buttons/TestButton"));
+            controls.AddControl("pictureBox", pictureBox);
+
+
 
         }
 
@@ -56,6 +67,8 @@ namespace MonkeyInvasion.Screens.Popups
                 obj.Update(gameTime);
             }
 
+            controls.Update(gameTime);
+
 
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
@@ -73,6 +86,8 @@ namespace MonkeyInvasion.Screens.Popups
             int playerIndex = 0;
 
             KeyboardState keyboardState = input.CurrentKeyboardStates[playerIndex];
+            KeyboardState prevKeyboardState = input.LastKeyboardStates[playerIndex];
+
             GamePadState gamePadState = input.CurrentGamePadStates[playerIndex];
 
             // The game pauses either if the user presses the pause button, or if
@@ -86,9 +101,8 @@ namespace MonkeyInvasion.Screens.Popups
             {
                 ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
             }
-            else if (keyboardState.IsKeyDown(Keys.P))
+            else if (keyboardState.IsKeyDown(Keys.P) && !prevKeyboardState.IsKeyDown(Keys.P))
             {
-
                 this.ExitScreen();
             }
             else
@@ -122,6 +136,8 @@ namespace MonkeyInvasion.Screens.Popups
             {
                 obj.Draw(gameTime, spriteBatch);
             }
+
+            controls.Draw(spriteBatch);
 
             spriteBatch.End();
 

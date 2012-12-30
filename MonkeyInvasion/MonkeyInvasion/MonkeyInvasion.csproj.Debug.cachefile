@@ -16,5 +16,7 @@ Content\Sprites\Player\Run.xnb
 Content\Sprites\MonsterA\Die.xnb
 Content\Sprites\MonsterA\Idle.xnb
 Content\Sprites\MonsterA\Run.xnb
+Content\TestPictureBox.xnb
+Content\Buttons\TestButton.xnb
 Content\Sounds\MonsterKilled.wma
 Content\Sounds\Music.wma

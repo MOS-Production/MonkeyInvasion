@@ -175,6 +175,8 @@ namespace MonkeyInvasion.Screens
             int playerIndex = 0;
 
             KeyboardState keyboardState = input.CurrentKeyboardStates[playerIndex];
+            KeyboardState prevKeyboardState = input.LastKeyboardStates[playerIndex];
+
             GamePadState gamePadState = input.CurrentGamePadStates[playerIndex];
 
             // The game pauses either if the user presses the pause button, or if
@@ -188,7 +190,7 @@ namespace MonkeyInvasion.Screens
             {
                 ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
             }
-            else if (keyboardState.IsKeyDown(Keys.P)){
+            else if (keyboardState.IsKeyDown(Keys.P) && !prevKeyboardState.IsKeyDown(Keys.P)){
 
                 ScreenManager.AddScreen(new BuildPopupScreen(game), ControllingPlayer);
             }

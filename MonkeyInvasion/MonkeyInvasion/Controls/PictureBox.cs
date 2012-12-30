@@ -26,7 +26,14 @@ namespace MonkeyInvasion.Controls
 
             if (Enabled)
             {
+                if (Size.Equals(Vector2.Zero))
+                {
+                    Size = Vector2.One;
+                }
                 spriteBatch.Draw(Texture, Position, null, Color, 0.0f, Vector2.Zero, Size, SpriteEffects.None, 0.0f);
+                //spriteBatch.Draw(Texture, Position, Color);
+                
+
             }
 
             base.Draw(spriteBatch);

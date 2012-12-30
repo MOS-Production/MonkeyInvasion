@@ -34,3 +34,5 @@ D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Conte
 D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\Sprites\MonsterA\Die.xnb
 D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\Sprites\MonsterA\Idle.xnb
 D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\Sprites\MonsterA\Run.xnb
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\TestPictureBox.xnb
+D:\dev\game dev\MonkeyInvasion\MonkeyInvasion\MonkeyInvasion\bin\x86\Debug\Content\Buttons\TestButton.xnb
