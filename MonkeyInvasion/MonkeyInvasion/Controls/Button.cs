@@ -63,8 +63,7 @@ namespace MonkeyInvasion.Controls
         public override void UpdateInput(InputState input)
         {
             if (Enabled)
-            {
-                
+            {               
                 //KeyboardState keyboardState = input.CurrentKeyboardStates[0];
              
                 MouseState mouseState = Mouse.GetState();
@@ -73,12 +72,12 @@ namespace MonkeyInvasion.Controls
                     {
 
                         //TODO handle down etc..
-
+                        
                         if(mouseState.LeftButton.Equals(ButtonState.Pressed)){
 
-                            Status = ButtonStatus.Clicked;
+                            Status = ButtonStatus.Clicked;                            
                             if(Clicked != null){
-                                //fire  click event!
+                                //fire  click event!                               
                                 Clicked(this, EventArgs.Empty);
                             }
 
@@ -112,7 +111,10 @@ namespace MonkeyInvasion.Controls
 
                 if (Status == ButtonStatus.Hover)
                 {
-                    spriteBatch.Draw(touchOverlay, bounds, Color);
+                    if (touchOverlay != null)
+                    {
+                        spriteBatch.Draw(touchOverlay, bounds, Color);
+                    }
 
                 }
 

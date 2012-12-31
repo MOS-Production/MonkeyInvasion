@@ -99,6 +99,8 @@
     <Compile Include="Entities\Enemy.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\TestGame.cs" />
+    <Compile Include="EventHandlers\BaseEventHandler.cs" />
+    <Compile Include="EventHandlers\MonkeyEvents.cs" />
     <Compile Include="GameStateManagement\GameScreen.cs" />
     <Compile Include="GameStateManagement\InputState.cs" />
     <Compile Include="GameStateManagement\ScreenManager.cs" />

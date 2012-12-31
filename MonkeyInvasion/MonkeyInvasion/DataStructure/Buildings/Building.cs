@@ -13,9 +13,10 @@ namespace MonkeyInvasion.DataStructure.Buildings
         BuildingType buildingType;
 
 
-        public Building(int buildingId)
+        public Building(int buildingId, BuildingType buildingType)
         {
             this.buildingId = buildingId;
+            this.buildingType = buildingType;
         }
 
     }

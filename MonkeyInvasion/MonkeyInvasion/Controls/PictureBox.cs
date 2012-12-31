@@ -30,9 +30,7 @@ namespace MonkeyInvasion.Controls
                 {
                     Size = Vector2.One;
                 }
-                spriteBatch.Draw(Texture, Position, null, Color, 0.0f, Vector2.Zero, Size, SpriteEffects.None, 0.0f);
-                //spriteBatch.Draw(Texture, Position, Color);
-                
+                spriteBatch.Draw(Texture, Position, null, Color, 0.0f, Vector2.Zero, Size, SpriteEffects.None, 0.0f);                                
 
             }
 

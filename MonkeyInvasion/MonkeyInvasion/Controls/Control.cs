@@ -76,7 +76,7 @@ namespace MonkeyInvasion.Controls
 
         public virtual void Update(GameTime gameTime)
         {
-
+            
         }
 
         public virtual void UpdateInput(InputState input)

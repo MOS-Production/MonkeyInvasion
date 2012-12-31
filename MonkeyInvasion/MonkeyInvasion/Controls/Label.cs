@@ -9,12 +9,11 @@ namespace MonkeyInvasion.Controls
     public class Label : Control
     {
 
-        public Label(string text, Vector2 position)
+        public Label(string text, Vector2 position, SpriteFont font)
             : base(position)
         {
             this.Text = text;
-            //Font = Fonts.HudFont;
-
+            Font = font;
 
         }
 
@@ -24,7 +23,7 @@ namespace MonkeyInvasion.Controls
             if (Enabled)
             {
 
-                spriteBatch.DrawString(Font, Text, Position, Color);
+                spriteBatch.DrawString(Font, Text, Position, Color);                
 
             }
 

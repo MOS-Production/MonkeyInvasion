@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Media;
 using MonkeyInvasion.GameStateManagement;
 using MonkeyInvasion.Entities;
 using MonkeyInvasion.Controls;
+using MonkeyInvasion.EventHandlers;
 
 
 namespace MonkeyInvasion.Screens.Popups
@@ -33,8 +34,7 @@ namespace MonkeyInvasion.Screens.Popups
 
             // Flag that there is no need for the game to transition
             // off when the build popup is on top of it.
-            IsPopup = true;
-
+            IsPopup = true;            
 
             //VARIOUS TEST CONTENT / CONTROLS
             ClickableObject buttonOne = new ClickableObject(game, new Vector2(100, 100), "Sprites/Player/");
@@ -44,10 +44,22 @@ namespace MonkeyInvasion.Screens.Popups
             objects.Add(buttonTwo);
 
 
-            PictureBox pictureBox = new PictureBox(new Vector2(250, 250), content.Load<Texture2D>("Buttons/TestButton"));
+            PictureBox pictureBox = new PictureBox(new Vector2(250, 250), content.Load<Texture2D>("TestPictureBox"));
             controls.AddControl("pictureBox", pictureBox);
 
 
+            //TODO add Font utils helper to easily access fonts and add more fonts to library
+            SpriteFont font = content.Load<SpriteFont>("Fonts/gamefont");
+            
+            Label testLabel = new Label("This is a test label..", new Vector2(250, 400), font);            
+            controls.AddControl("testLabel", testLabel);
+
+            Button testButton = new Button(content.Load<Texture2D>("Buttons/TestButton"), null, new Vector2(50, 250), "Button text goes here...");
+            testButton.Clicked += MonkeyEvents.TestButtonClickEvent;            
+
+            controls.AddControl("testButton", testButton);
+
+           
 
         }
 
@@ -59,8 +71,7 @@ namespace MonkeyInvasion.Screens.Popups
         public override void Update(GameTime gameTime, bool otherScreenHasFocus,
                                                        bool coveredByOtherScreen)
         {
-     
-            // TODO: Add your update logic here            
+                   
 
             foreach (ClickableObject obj in objects)
             {
@@ -107,12 +118,13 @@ namespace MonkeyInvasion.Screens.Popups
             }
             else
             {
-
                 //if (keyboardState.IsKeyDown(Keys.Escape))
-                //    this.ExitScreen();
+                //    this.ExitScreen();           
 
-           
             }
+
+            controls.UpdateInput(input);
+
         }
 
 
@@ -130,8 +142,7 @@ namespace MonkeyInvasion.Screens.Popups
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
 
             spriteBatch.Begin();
-
-            // TODO DRAW STUFF ON SCREEN!
+            
             foreach (ClickableObject obj in objects)
             {
                 obj.Draw(gameTime, spriteBatch);

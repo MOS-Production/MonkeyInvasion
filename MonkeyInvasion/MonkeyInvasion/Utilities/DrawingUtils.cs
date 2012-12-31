@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MonkeyInvasion.Utilities
 {
-    public class DrawingUtils
+    public static class DrawingUtils
     {
 
         public static void DrawCenteredText(SpriteBatch batch, SpriteFont font, Rectangle rectangle, string text, Color color)

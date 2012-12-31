@@ -33,8 +33,6 @@ namespace MonkeyInvasion.Screens
 
         private ClickEngineGame game;
 
-        private bool wasContinuePressed;
-
         private const int TargetFrameRate = 30;
         private const int BackBufferWidth = 1280;
         private const int BackBufferHeight = 720;

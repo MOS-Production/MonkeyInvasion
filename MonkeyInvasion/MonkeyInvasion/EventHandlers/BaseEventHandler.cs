@@ -3,13 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MonkeyInvasion.DataStructure.Units
+namespace MonkeyInvasion.EventHandlers
 {
-    class Unit
+    class BaseEventHandler
     {
-        UnitType unitType;
-        
-
-
     }
 }

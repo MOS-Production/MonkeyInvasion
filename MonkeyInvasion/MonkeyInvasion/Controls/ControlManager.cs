@@ -48,10 +48,8 @@ namespace MonkeyInvasion.Controls
         {
 
             foreach (var control in controls)
-            {
-                Console.WriteLine("control draw! " + control.Key);
+            {                
                 control.Value.Draw(spriteBatch);
-
             }
 
         }

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MonkeyInvasion.DataStructure.Units
+namespace MonkeyInvasion.Graphics
 {
-    class Unit
+    public static class Fonts
     {
-        UnitType unitType;
-        
+
+
 
 
     }

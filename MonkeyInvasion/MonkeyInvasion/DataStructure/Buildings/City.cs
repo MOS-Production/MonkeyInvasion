@@ -12,7 +12,7 @@ namespace MonkeyInvasion.DataStructure.Buildings
     {
 
         /* Byens navn */
-        String Name;
+        String Name = "";
 
 
         /* Byens posisjon på kartet */
@@ -23,7 +23,7 @@ namespace MonkeyInvasion.DataStructure.Buildings
          * Byens nivå (kanskje enum?) Som en int kan level også brukes til å hente 
          * hvilken posisjon på spritemap som skal hentes for å vise grafikken til byen 
          */
-        int Level;
+        int Level = -1;
 
 
         /* 
@@ -38,7 +38,7 @@ namespace MonkeyInvasion.DataStructure.Buildings
 
     
         /* Liste over alle bygninger i en byen. Mulige bedre løsninger? */
-        List<Building> Buildings;
+        List<Building> Buildings = new List<Building>();
 
 
         public City() 
@@ -47,20 +47,10 @@ namespace MonkeyInvasion.DataStructure.Buildings
         }
 
 
-        public void AddNewBuilding(int buildingID)
-        {
-            Building building = new Building(0);
+        public void AddNewBuilding(Building building)
+        {            
             Buildings.Add(building);
         }
-
-
-        public Building GetBuildingByPosition(Vector2 position)
-        {
-            //Returnerer et bygningsobjekt basert på X og Y koordinatene til bygningen
-            //Kan også løses med en index
-            return new Building(0);
-        }
-
 
         public void Draw()
         {

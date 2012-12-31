@@ -43,14 +43,6 @@ namespace MonkeyInvasion.Entities
 
         }
 
-        /// <summary>
-        /// Unloads the game content.
-        /// </summary>
-        public void Dispose()
-        {
-            Content.Unload();
-        }
-
         #endregion
 
 
